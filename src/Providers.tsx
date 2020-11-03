@@ -12,12 +12,10 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: -apple-system,BlinkMacSystemFont,"Malgun Gothic","맑은 고딕",helvetica,"Apple SD Gothic Neo",sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 16px;
     line-height: 1.4;
-    color: #202020;
-    width: 100%;
-    height: 100vh;
+    color: #333;
     margin: 0;
     padding: 0;
     word-break: keep-all;
