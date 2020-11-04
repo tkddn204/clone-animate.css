@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { StoryGetter, StoryContext } from '@storybook/addons';
 import React, { ReactNode } from 'react';
-import Providers from '../src/App/Providers';
+import Providers from '../src/Providers';
 
 export const decorators = [
   (Story: StoryGetter, context: StoryContext): ReactNode => {

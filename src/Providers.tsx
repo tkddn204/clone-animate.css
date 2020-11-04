@@ -37,7 +37,7 @@ const GlobalStyle = createGlobalStyle`
 interface Props {
   children: ReactElement
 }
-export function Providers ({ children }: Props): ReactElement {
+export default function Providers ({ children }: Props): ReactElement {
   return (
     <StrictMode>
       <GlobalStyle />

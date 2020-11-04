@@ -19,7 +19,7 @@ const SubTitle = styled.h2`
   margin: 0
 `;
 
-interface CalloutProps {
+export interface CalloutProps {
   title: string
   subTitle: string
 }

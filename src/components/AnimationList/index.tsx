@@ -8,7 +8,7 @@ const Container = styled.section`
   padding: 2rem;
 `;
 
-interface AnimationListProps extends HTMLProps<HTMLDivElement> {
+export interface AnimationListProps extends HTMLProps<HTMLDivElement> {
   animationGroups: AnimationGroupList
 }
 
