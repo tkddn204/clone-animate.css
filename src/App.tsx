@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
-import { Providers } from './Providers';
-import data from './data.json';
-
+import Providers from './Providers';
 import Layout from './components/Layout';
 import Callout from './components/Callout';
 import Footer from './components/Footer';
 import AnimationList from './components/AnimationList';
+
+import data from './data.json';
 
 const AnimationArticle = styled.article`
   display: flex;

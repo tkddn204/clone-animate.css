@@ -1,5 +1,16 @@
-import React, { FC } from "react";
-import styled from "styled-components";
+import React, { FC, useEffect } from "react";
+import { connect, ConnectedProps } from "react-redux";
+import styled, { css, FlattenSimpleInterpolation } from "styled-components";
+import parseTime from "parse-duration";
+import { RootState } from "../store";
+import BounceCSS from "./Animation/AttentionSeekers/Bounce";
+import FlashCSS from "./Animation/AttentionSeekers/Flash";
+import { idleAnimationAction } from "../store/calloutAnimation/actions";
+
+interface AnimationProps {
+  animationDuration?: string
+  animation?: FlattenSimpleInterpolation
+}
 
 const Container = styled.section`
   display: flex;
@@ -7,10 +18,14 @@ const Container = styled.section`
   text-align: center;
 `;
 
-const Title = styled.h1`
+const Title = styled.h1<AnimationProps>`
   font-size: 4.2rem;
   color: #351c75;
   margin: 0;
+
+  animation-duration: ${props => props.animationDuration || '1s'};
+  animation-fill-mode: both;
+  ${props => props.animation}
 `;
 
 const SubTitle = styled.h2`
@@ -19,16 +34,60 @@ const SubTitle = styled.h2`
   margin: 0
 `;
 
-export interface CalloutProps {
+interface OwnProps {
+  className?: string
   title: string
   subTitle: string
 }
+export type CalloutProps = Partial<PropsFromRedux> & OwnProps;
 
-const Callout: FC<CalloutProps> = ({ title, subTitle }) => (
-  <Container>
-    <Title>{title}</Title>
-    <SubTitle>{subTitle}</SubTitle>
-  </Container>
-)
+const getAnimationCss: (animation?: string) => FlattenSimpleInterpolation = (animation) => {
+  if (animation === 'bounce') {
+    return BounceCSS;
+  } else if (animation === 'flash') {
+    return FlashCSS;
+  } else {
+    return css``;
+  }
+}
 
-export default Callout;
+const Callout: FC<CalloutProps> = ({
+  className,
+  animation,
+  title,
+  subTitle,
+  onAnimationFinish,
+}) => {
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (animation?.state === 'process' && onAnimationFinish) {
+        onAnimationFinish();
+      }
+    }, parseTime(animation?.duration || '1000'));
+    return () => {
+      clearTimeout(timeout);
+    }
+  }, [animation])
+  return (
+    <Container>
+      <Title 
+        className={className}
+        animationDuration={animation?.duration}
+        animation={getAnimationCss(animation?.context)}
+      >
+        {title}
+      </Title>
+      <SubTitle>{subTitle}</SubTitle>
+    </Container>
+  )
+}
+
+const mapStateToProps = (state: RootState) => ({
+  animation: state.animation
+});
+const mapDispatch = {
+  onAnimationFinish: () => idleAnimationAction()
+};
+const connector = connect(mapStateToProps, mapDispatch);
+type PropsFromRedux = ConnectedProps<typeof connector>
+export default connector(Callout);

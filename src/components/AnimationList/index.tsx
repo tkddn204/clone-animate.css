@@ -19,6 +19,7 @@ const AnimationList: FC<AnimationListProps> = ({
   <Container className={className}>
     {animationGroupList.map(animationGroup => 
       <AnimationSection 
+        key={animationGroup.title}
         title={animationGroup.title} 
         animations={animationGroup.animations}
       />

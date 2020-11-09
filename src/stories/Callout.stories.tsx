@@ -11,3 +11,7 @@ type StoryProps = CalloutProps;
 
 export const DefaultCallout: Story<StoryProps> = ({title, subTitle}) => 
   <Callout title={title} subTitle={subTitle} />
+DefaultCallout.args = {
+  title: "Clone-Animate.css",
+  subTitle: "Just-clone-water CSS animations"
+}

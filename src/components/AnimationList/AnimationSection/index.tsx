@@ -1,5 +1,7 @@
-import React, { FC, HTMLProps } from "react";
+import React, { FC } from "react";
+import { connect, ConnectedProps } from "react-redux";
 import styled from "styled-components";
+import { processAnimationAction } from "../../../store/calloutAnimation/actions";
 
 const Container = styled.section`
   width: 100%;
@@ -20,26 +22,38 @@ const GroupList = styled.ul`
 const GroupItem = styled.li`
   font-size: 1.1rem;
   display: block;
+  cursor: pointer;
 `;
 
-interface AnimationSectionProps extends HTMLProps<HTMLDivElement> {
+interface OwnProps {
+  className?: string;
   title: string;
   animations: string[];
+  onClickAnimation?: (animation: string) => void
 }
 
-const AnimationSection: FC<AnimationSectionProps> = ({
+export type AnimationSectionProps = Partial<PropsFromRedux> & OwnProps
+
+export const AnimationSection: FC<AnimationSectionProps> = ({
    className,
    title,
-   animations
+   animations,
+   onClickAnimation
 }) => (
   <Container className={className}>
     <Title>{title}</Title>
-    <GroupList>{animations.map(item => (
-      <GroupItem>
-        {item}
+    <GroupList>{animations.map(animation => (
+      <GroupItem key={animation} onClick={onClickAnimation?.bind(null, animation)}>
+        {animation}
       </GroupItem>
     ))}</GroupList>
   </Container>
 )
 
-export default AnimationSection;
+const mapDispatch = {
+  onClickAnimation: (animation: string) => (processAnimationAction(animation))
+};
+const connector = connect(null, mapDispatch);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+export default connector(AnimationSection);

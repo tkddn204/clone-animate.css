@@ -1,6 +1,9 @@
 import React, { ReactElement, StrictMode } from "react";
+import { Provider } from "react-redux";
 import { createGlobalStyle } from "styled-components";
 import { normalize } from 'styled-normalize';
+
+import store from './store';
 
 const GlobalStyle = createGlobalStyle`
     ${normalize}
@@ -40,8 +43,10 @@ interface Props {
 export default function Providers ({ children }: Props): ReactElement {
   return (
     <StrictMode>
-      <GlobalStyle />
-      {children}
+      <Provider store={store}>
+        <GlobalStyle />
+        {children}
+      </Provider>
     </StrictMode>
   )
 }
