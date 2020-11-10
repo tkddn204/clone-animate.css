@@ -1,17 +1,18 @@
-import React from 'react';
-import { Story, Meta } from '@storybook/react/types-6-0';
-import Callout, { CalloutProps } from '../components/Callout';
+import React from 'react'
+import { Story, Meta } from '@storybook/react/types-6-0'
+import Callout, { CalloutProps } from '../components/Callout'
 
 export default {
-  title: "Components/Callout",
+  title: 'Components/Callout',
   component: Callout,
-} as Meta;
+} as Meta
 
-type StoryProps = CalloutProps;
+type StoryProps = CalloutProps
 
-export const DefaultCallout: Story<StoryProps> = ({title, subTitle}) => 
+export const DefaultCallout: Story<StoryProps> = ({ title, subTitle }) => (
   <Callout title={title} subTitle={subTitle} />
+)
 DefaultCallout.args = {
-  title: "Clone-Animate.css",
-  subTitle: "Just-clone-water CSS animations"
+  title: 'Clone-Animate.css',
+  subTitle: 'Just-clone-water CSS animations',
 }

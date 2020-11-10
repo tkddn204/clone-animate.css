@@ -1,9 +1,9 @@
-import React, { ReactElement, StrictMode } from "react";
-import { Provider } from "react-redux";
-import { createGlobalStyle } from "styled-components";
-import { normalize } from 'styled-normalize';
+import React, { ReactElement, StrictMode } from 'react'
+import { Provider } from 'react-redux'
+import { createGlobalStyle } from 'styled-components'
+import { normalize } from 'styled-normalize'
 
-import store from './store';
+import store from './store'
 
 const GlobalStyle = createGlobalStyle`
     ${normalize}
@@ -35,12 +35,12 @@ const GlobalStyle = createGlobalStyle`
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
   }
-`;
+`
 
 interface Props {
   children: ReactElement
 }
-export default function Providers ({ children }: Props): ReactElement {
+export default function Providers({ children }: Props): ReactElement {
   return (
     <StrictMode>
       <Provider store={store}>

@@ -1,30 +1,21 @@
-import React, { FC, HTMLProps } from "react";
-import styled from "styled-components";
-import { AnimationGroupList } from "../../typing";
-import AnimationSection from "./AnimationSection";
-
-const Container = styled.section`
-  width: 100%;
-  padding: 2rem;
-`;
+import React, { FC, Fragment, HTMLProps } from 'react'
+import { AnimationGroupList } from '../../typing'
+import AnimationSection from './AnimationSection'
 
 export interface AnimationListProps extends HTMLProps<HTMLDivElement> {
   animationGroups: AnimationGroupList
 }
 
-const AnimationList: FC<AnimationListProps> = ({
-   className,
-   animationGroups: animationGroupList
-}) => (
-  <Container className={className}>
-    {animationGroupList.map(animationGroup => 
-      <AnimationSection 
+const AnimationList: FC<AnimationListProps> = ({ animationGroups }) => (
+  <Fragment>
+    {animationGroups.map((animationGroup) => (
+      <AnimationSection
         key={animationGroup.title}
-        title={animationGroup.title} 
+        title={animationGroup.title}
         animations={animationGroup.animations}
       />
-    )}
-  </Container>
+    ))}
+  </Fragment>
 )
 
-export default AnimationList;
+export default AnimationList

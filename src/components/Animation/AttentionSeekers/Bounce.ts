@@ -1,4 +1,4 @@
-import { css, keyframes } from 'styled-components';
+import { css, keyframes } from 'styled-components'
 
 const BounceKeyframes = keyframes`
   from,
@@ -28,11 +28,11 @@ const BounceKeyframes = keyframes`
   90% {
     transform: translate3d(0, -4px, 0) scaleY(1.02);
   }
-`;
+`
 
 const BounceCSS = css`
   animation-name: ${BounceKeyframes};
   transform-origin: center bottom;
-`;
+`
 
 export default BounceCSS

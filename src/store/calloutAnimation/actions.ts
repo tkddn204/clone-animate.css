@@ -19,12 +19,14 @@ interface ProcessAnimation extends PayloadAction<string> {
 }
 
 export const idleAnimationAction: ActionCreator<IdleAnimation> = () => ({
-  type: CalloutAnimationTypes.IDLE
+  type: CalloutAnimationTypes.IDLE,
 })
 
-export const processAnimationAction: ActionCreator<ProcessAnimation> = (animation: string) => ({
+export const processAnimationAction: ActionCreator<ProcessAnimation> = (
+  animation: string
+) => ({
   type: CalloutAnimationTypes.PROCESS,
-  payload: animation
+  payload: animation,
 })
 
 export type CalloutAnimationAction = IdleAnimation | ProcessAnimation

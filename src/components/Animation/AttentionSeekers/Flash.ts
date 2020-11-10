@@ -1,4 +1,4 @@
-import { css, keyframes } from 'styled-components';
+import { css, keyframes } from 'styled-components'
 
 const FlashKeyframes = keyframes`
   from,
@@ -11,10 +11,10 @@ const FlashKeyframes = keyframes`
   75% {
     opacity: 0;
   }
-`;
+`
 
 const FlashCSS = css`
   animation-name: ${FlashKeyframes};
-`;
+`
 
 export default FlashCSS
